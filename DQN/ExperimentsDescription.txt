@@ -1,0 +1,65 @@
+Exp1:
+1 hidden layer with 100 units (DQN) , 200 units(Double, Prioritized Replay)
+RMSProp
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 32,
+Reward decay = 0.99
+Learning Rate = 0.0001
+
+Exp2:
+2 hidden layers with 200 units each
+RMSProp
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 32,
+Reward decay = 0.99
+Learning Rate = 0.0001
+
+Exp3:
+2 hidden layers with 100 units each
+RMSProp
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 32,
+Reward decay = 0.99
+Learning Rate = 0.0001
+
+Exp4:
+2 hidden layers with 50 units each
+RMSProp
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 32,
+Reward decay = 0.99
+Learning Rate = 0.0001
+
+Exp5:
+2 hidden layers with 400 units each
+RMSProp
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 32,
+Reward decay = 0.99
+Learning Rate = 0.0001
+
+Exp6:
+2 hidden layers with 200 units each
+AdamOptimizer
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 32,
+Reward decay = 0.99
+Learning Rate = 0.0001

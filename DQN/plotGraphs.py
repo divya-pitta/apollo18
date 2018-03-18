@@ -29,21 +29,26 @@ def plot_cost_multiple(pltList, window_width, xlabel, ylabel, title, labelList):
 		pltList[i] = slidingavg(pltList[i], window_width)
 		plt.plot(np.arange(len(pltList[i])), pltList[i], label=labelList[i])
 	plt.legend()
+	print(title)
 	plt.savefig("{0}".format(title))
 
 
-rootFolder = sys.path[0]+'\\Exp1\\'
+rootFolder = sys.path[0]+'\\Exp6\\'
+# rootFolderNames = ["Exp1", "Exp2", "Exp3", "Exp4", "Exp5"]
+rootFolderNames = ["Exp2", "Exp6"]
+rootFolderList  = [sys.path[0]+"\\"+x+"\\" for x in rootFolderNames]
 
 dqn = "DQN"
 doubleDQN = "Double_DQN"
 prioritizedReplay = "PrioritizedReplayDQN"
+DOUBLE_PRIORITIZED_DQN = "DoublePrioritizedReplayDQN"
 
 landing = "Landing"
 runningReward = "RunningReward"
 startStateValue = "StartStateValue"
 episodeReward = "EpisodeReward"
 
-plotNetworks = [dqn, doubleDQN, prioritizedReplay]
+plotNetworks = [dqn, doubleDQN, prioritizedReplay, DOUBLE_PRIORITIZED_DQN]
 plotsList = [landing, runningReward, startStateValue, episodeReward]
 
 # for nwType in plotNetworks:
@@ -51,12 +56,26 @@ plotsList = [landing, runningReward, startStateValue, episodeReward]
 # 		listInfo = pickle.load(open(rootFolder+nwType+"_"+p+".pb","rb"))
 # 		plot_cost(listInfo, 50, "Episode", p, nwType)
 
+# for p in plotsList:
+# 	pltList = []
+# 	labelList = []
+# 	for nwType in plotNetworks:
+# 		listInfo = pickle.load(open(rootFolder+nwType+"_"+p+".pb", "rb"))
+# 		pltList.append(listInfo)
+# 		labelList.append(nwType)
+# 	plot_cost_multiple(pltList, 50, "Episode", p, "Comparison of "+p, labelList)
+
 for p in plotsList:
-	newfigure = True
-	pltList = []
-	labelList = []
 	for nwType in plotNetworks:
-		listInfo = pickle.load(open(rootFolder+nwType+"_"+p+".pb", "rb"))
-		pltList.append(listInfo)
-		labelList.append(nwType)
-	plot_cost_multiple(pltList, 50, "Episode", p, "Comparison of "+p, labelList)
+		pltList = []
+		labelList = []
+		i=0
+		for folder in rootFolderList:
+			try:
+				listInfo = pickle.load(open(folder+nwType+"_"+p+".pb", "rb"))
+				pltList.append(listInfo)
+				labelList.append(nwType+"_"+rootFolderNames[i])
+			except:
+				doNothing = True
+			i += 1
+		plot_cost_multiple(pltList, 50, "Episode", p, "Comparison of "+p+" for network "+nwType, labelList)
