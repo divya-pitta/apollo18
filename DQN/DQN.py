@@ -21,7 +21,8 @@ class DeepQNetwork:
             e_greedy_increment=None,
             output_graph=False,
             hidden = None,
-            hiddenunits = [200, 200]
+            hiddenunits = [200, 200],
+            optimizer = tf.train.AdamOptimizer
     ):
         self.n_actions = n_actions
         self.n_features = n_features
@@ -34,6 +35,7 @@ class DeepQNetwork:
         self.epsilon_increment = e_greedy_increment
         self.epsilon = 0.5 if e_greedy_increment is not None else self.epsilon_max
         self.hiddenunits = hiddenunits
+        self.optimizer = optimizer
 
         # total learning step
         self.learn_step_counter = 0
@@ -87,7 +89,7 @@ class DeepQNetwork:
         with tf.variable_scope('loss'):
             self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_eval))
         with tf.variable_scope('train'):
-            self._train_op = tf.train.RMSPropOptimizer(self.lr).minimize(self.loss)
+            self._train_op = self.optimizer(self.lr).minimize(self.loss)
 
         # ------------------ build target_net ------------------
         self.s_ = tf.placeholder(tf.float32, [None, self.n_features], name='s_')    # input

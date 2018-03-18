@@ -44,8 +44,8 @@ HIDDEN = [400, 400]
 HIDDEN_UNITS = [200, 200]
 RENDER = False
 
-# runNetworkTypes = [DQN, DOUBLE_DQN, PRIORITIZED_DQN]
-runNetworkTypes = [DOUBLE_PRIORITIZED_DQN]
+runNetworkTypes = [DQN, DOUBLE_DQN, PRIORITIZED_DQN, DOUBLE_PRIORITIZED_DQN]
+# runNetworkTypes = [DOUBLE_PRIORITIZED_DQN]
 
 for NETWORK_TYPE in runNetworkTypes: 
     tf.reset_default_graph()
@@ -116,7 +116,7 @@ for NETWORK_TYPE in runNetworkTypes:
                 running_r = 0.99 * running_r + 0.01 * ep_r
                 runningRewardList.append(running_r)
                 episodeRewardList.append(ep_r)
-                if(i_episode%50 == 0):
+                if(i_episode%500 == 0):
                     print('Epi: ', i_episode,
                           land,
                           '| Epi_R: ', round(ep_r, 2),
