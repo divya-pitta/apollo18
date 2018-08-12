@@ -35,7 +35,7 @@ def plot_cost_multiple(pltList, window_width, xlabel, ylabel, title, labelList):
 
 rootFolder = sys.path[0]+'\\Exp6\\'
 # rootFolderNames = ["Exp1", "Exp2", "Exp3", "Exp4", "Exp5"]
-rootFolderNames = ["Exp2", "Exp6"]
+rootFolderNames = ["Exp7", "Exp8"]
 rootFolderList  = [sys.path[0]+"\\"+x+"\\" for x in rootFolderNames]
 
 dqn = "DQN"
@@ -65,17 +65,30 @@ plotsList = [landing, runningReward, startStateValue, episodeReward]
 # 		labelList.append(nwType)
 # 	plot_cost_multiple(pltList, 50, "Episode", p, "Comparison of "+p, labelList)
 
-for p in plotsList:
-	for nwType in plotNetworks:
-		pltList = []
-		labelList = []
-		i=0
-		for folder in rootFolderList:
-			try:
-				listInfo = pickle.load(open(folder+nwType+"_"+p+".pb", "rb"))
-				pltList.append(listInfo)
-				labelList.append(nwType+"_"+rootFolderNames[i])
-			except:
-				doNothing = True
-			i += 1
-		plot_cost_multiple(pltList, 50, "Episode", p, "Comparison of "+p+" for network "+nwType, labelList)
+# for p in plotsList:
+# 	for nwType in plotNetworks:
+# 		pltList = []
+# 		labelList = []
+# 		i=0
+# 		for folder in rootFolderList:
+# 			try:
+# 				listInfo = pickle.load(open(folder+nwType+"_"+p+".pb", "rb"))
+# 				pltList.append(listInfo)
+# 				labelList.append(nwType+"_"+rootFolderNames[i])
+# 			except:
+# 				doNothing = True
+# 			i += 1
+# 		plot_cost_multiple(pltList, 50, "Episode", p, "Comparison of "+p+" for network "+nwType, labelList)
+
+#Code to print the landing scenario
+for p in [landing]:
+	pltList = []
+	labelList = []
+	for nwType in [DOUBLE_PRIORITIZED_DQN]:
+		listInfo = pickle.load(open(rootFolder+nwType+"_"+p+".pb", "rb"))
+		for i in range(1500,1600):
+			if(listInfo[i]==1):
+				print(i)
+		# pltList.append(listInfo)
+		# labelList.append(nwType)
+	# plot_cost_multiple(pltList, 50, "Episode", p, "Comparison of "+p, labelList)

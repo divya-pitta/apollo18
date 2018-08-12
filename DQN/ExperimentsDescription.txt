@@ -63,3 +63,27 @@ Replace_target_iter = 4000
 Batch size = 32,
 Reward decay = 0.99
 Learning Rate = 0.0001
+
+Exp7:
+2 hidden layers with 200 units each
+AdamOptimizer
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 64,
+Reward decay = 0.99
+Learning Rate = 0.0001
+
+Exp8:
+2 hidden layers with 100 units each
+AdamOptimizer
+Mean Squared Error
+3000 episodes
+Epsilon greedy - starts with 0.5, increases by 0.001 every time step, reaches a max of 0.95
+Replace_target_iter = 4000
+Batch size = 32,
+Reward decay = 0.99
+Learning Rate = 0.0001
+
+
